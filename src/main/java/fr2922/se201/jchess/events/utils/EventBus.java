@@ -16,6 +16,7 @@ public class EventBus {
             callbacks.get(key).forEach(value -> System.out.print(value.toString() + " "));
             System.out.println();
         });
+
     }
 
 

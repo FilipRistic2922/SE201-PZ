@@ -1,19 +1,21 @@
 package fr2922.se201.jchess.piece;
 
 public enum Type {
-    PAWN(100),
-    ROOK(500),
-    KNIGHT(220),
-    BISHOP(225),
-    QUEEN(910),
-    KING(30000);
+    PAWN(100, "p"),
+    ROOK(500,"r"),
+    KNIGHT(220, "n"),
+    BISHOP(225, "b"),
+    QUEEN(910, "q"),
+    KING(30000, "k");
 
-    Type(int value){
+    Type(final int value, final String letter){
+
         this.value = value;
+        this.letter = letter;
     }
 
     public final int value;
-
+    public final String letter;
 
 
 }

@@ -1,24 +1,57 @@
 package fr2922.se201.jchess.move;
 
 import fr2922.se201.jchess.board.IBoard;
+import fr2922.se201.jchess.events.MoveExecutedEvent;
+import fr2922.se201.jchess.events.utils.EventBus;
+import fr2922.se201.jchess.piece.Piece;
 
-public class Move {
-    public final int FROM;
-    public final int TO;
+public abstract class Move {
 
-    public Move(int FROM, int TO) {
-        this.FROM = FROM;
-        this.TO = TO;
+    /**
+     * Position from which piece is moved
+     */
+    public final int from;
+
+    /**
+     * Position to which piece is moved
+     */
+    public final int to;
+
+    /**
+     * Move type
+     */
+    public final MoveType type;
+
+    protected Move(int from, int to, Piece movingPiece, MoveType type) {
+        this.from = from;
+        this.to = to;
+        this.type = type;
     }
 
     /**
-     * Executes move on provided board, if move is invalid it will return same board,
+     * Executes move on provided board, if move leaves king in check same it will return same board,
      * otherwise new board is created
      *
-     * @param board - board on which we are executing move
      * @return board after move is executed
      */
-    public IBoard execute(IBoard board){
-        return board;
+    public abstract MoveResult execute(IBoard board);
+
+    @Override
+    public String toString() {
+        return "Move{" +
+                "from=" + from +
+                ", to=" + to +
+                '}';
     }
+
+    public enum ResultType{
+        KING_LEFT_CHECKED,
+        STALEMATE,
+        CHECKMATE,
+        CHECK,
+        REGULAR
+    }
+
+
+
 }

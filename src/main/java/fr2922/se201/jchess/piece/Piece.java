@@ -10,6 +10,10 @@ public class Piece {
         this.color = color;
     }
 
+    public final boolean isWhite(){
+        return color.isWhite();
+    }
+
 
 
 }
